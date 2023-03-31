@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .banner {
+  background-image: url(https://images2.alphacoders.com/116/1160159.png);
+  background-size: cover;
+  background-position: center;
+  height: 700px;
+  position: relative;
+}
+
+.banner::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.button {
+  margin: 0 !important;
+  align-self: center;
+  text-decoration: none;
+  margin-top: 30px;
+  padding: 15px 25px;
+  background-color: #20BCD1;
+  color: white;
+  border: white;
+  font-size: 14pt;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  transition: 0.5s;
+  
+}
+
+
+
+.button:not(hover) {
+  background-color: #c93939;
+  transition: 0.5s;
+}
+
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+}
+
+</style>
+
+<div class="">
+    <div class="banner">
+        <div class="banner-text">
+          <h1>POKEDEX PERSONALIZADA</h1>
+          <p>Encuentra a tus pokemones favoritos!</p>
+          <br />
+          <br />
+          {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_GUARDIA") or is_granted("ROLE_RESIDENTE")%}
+          <a
+            class="button"
+            aling="right"            
+            style="padding: 20px; background-color: rgb(97, 94, 92)"               
+            disabled="false"                 
+            >INICIAR SESION</a
+          >
+          {% else %}
+          <a
+            class="button"
+            aling="right"
+            style="padding: 20px"   
+            href="{{path('app_login')}}"                     
+            >INICIAR SESION</a
+          >
+          {% endif %}
+        </div>
+      </div>
+</div>
+{% endblock %}

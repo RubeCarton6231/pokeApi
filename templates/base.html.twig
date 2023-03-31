@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+        
+    </head>
+    <style>
+ 
+    .btn2:hover {
+      background-color: #c93939;
+      border-radius: 10px;
+      transition: 0.5s;
+    }
+       
+    </style>
+    <body>    
+        
+        <div style="background-color: #4e0101; ">
+            <div class="fondoNavBar" >
+                <div class="navbar border-bottom"  style="
+                justify-content: center;                             
+                margin: 0 auto;
+                width: 95%;">
+                    <a class="navbar-brand my-0 btn1"href="{{path('app_home')}}" style="padding: 0px;color: white; font-weight: bold;"><h1>Pokedex</h1></a>
+                </div>
+            </div>       
+            <div class="contenedor" style="display: flex;flex-direction: row;">
+                <nav class="navbar navbar-expand-lg navbar-dark" style="padding: 0px">
+    
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav" style="margin-left: 10px;">
+                        <div>
+                        <ul class="navbar-nav" >
+                            <li class="nav-item p-2 px-3">
+                             <a class="nav-link btn2"  href="{{path('app_home')}}" style="color: white;">Inicio</a>
+                            </li>
+                            <li class="nav-item dropdown p-2 px-3" >
+                                <a class="nav-link btn2"  href="/login" style="color: white;">Cliente</a>
+                            </li>
+                            <li class="nav-item dropdown p-2 px-3" >
+                                <a class="nav-link btn2"  href="/login" style="color: white;">Técnico</a>
+                            </li>
+                            <li class="nav-item dropdown p-2 px-3">
+                                <a class="nav-link btn2"  href="{{path('app_usuario_index')}}" style="color: white;">Administrador</a>
+                            </li>
+                        </ul>
+        
+                        </div>
+                        
+                    </div>
+                </nav>
+                <div class="ml-auto" style="margin-top: 8px; margin-right: 30px;">
+                    <ul class="navbar-nav">
+                        <li class="nav-item p-2" style="display: flex; flex-direction: row;">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <p style="color: white; margin-top: 8px; margin-right: 20px;">{{ app.user.nombre }} {{ app.user.apellido }} </p>
+                            <a class="nav-link"  href="{{ path('app_logout') }}" style="color: white;"> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+                                    <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                                    <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
+                                </svg>
+                            </a>                        
+                            {% else %}
+                            <a class="nav-link"  href="{{path('app_login')}}" style="color: white;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                </svg>
+                            </a>                        
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% block body %}
+        
+       
+        {% endblock %}
+    </body>
+</html>

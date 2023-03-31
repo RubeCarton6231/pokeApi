@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="subcontenedor" style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #3a4e648c;
+">
+    <div style="background-color: rgba(255, 255, 255, 0.445); width: 500px;">
+       <h1>Registro</h1>
+        
+        {{ form_start(registrationForm) }}
+        <div style="text-align:justify; width: 40%;margin: auto;">
+            <div class="form-outline form-white c">
+                <label class="form-label" style="width: 100%;" for="typeEmail">Correo: </label>
+                    {{ form_widget(registrationForm.email) }}                        
+            </div>
+            <div class="form-outline form-white c">
+                <label class="form-label" style="width: 100%;" for="typePassword">Contraseña: </label>
+                    {{ form_widget(registrationForm.plainPassword) }}                        
+            </div>  
+            <div class="form-outline form-white c">
+                <label class="form-label" style="width: 100%;" for="typePassword">Nombre: </label>
+                {{ form_widget(registrationForm.nombre) }}                                          
+            </div>  
+            <div class="form-outline form-white c">
+                <label class="form-label" style="width: 100%;" for="typePassword">Apellio: </label>
+                {{ form_widget(registrationForm.apellido) }}                                          
+            </div>  
+            <div class="form-outline form-white c">
+                <label class="form-label" style="width: 100%;" for="typePassword">Cedula: </label>
+                {{ form_widget(registrationForm.cedula) }}                                          
+            </div>  
+            <div class="form-outline form-white c" style="margin-top: 10px;">
+                <label class="form-label" for="typePassword">Rol: </label>
+                    {{ form_widget(registrationForm.roles) }}                        
+            </div>                                    
+            <div>
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+        </div>
+            <div style="margin-top: 20px; padding: 10px">
+                <button class="btn btn-lg btn-primary" type="submit">
+                    Registrar
+                </button>
+                <a class="btn btn-lg btn-primary"  href="/home">
+                    Cancelar
+                </a>
+            </div>
+        {{ form_end(registrationForm) }}
+        
+     </div>
+</div>
+{% endblock %}

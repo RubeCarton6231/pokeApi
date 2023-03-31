@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuario index{% endblock %}
+
+{% block body %}
+    <h1>Usuario index</h1>
+    <div style="width: 90%;margin: auto; padding: 20px;">
+        <table class="table">
+            <thead style="border: 1px solid #000">
+                <tr style="background-color: #0F1A2C; color: white; text-align: center;">
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Nombre</th>
+                    <th>Clave</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody style="border: 1px solid #000">
+            {% for usuario in usuarios %}
+                <tr>
+                    <td  style="text-align: center;">{{ usuario.idUsuario }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.clave }}</td>
+                    <td>{{ usuario.roles ? usuario.roles|json_encode : '' }}</td>
+                    <td style="text-align: center; ">
+                        <div style="background-color: rgb(5, 82, 5); padding: 10px;">
+                          <span style="color: white; font-weight: bold;">{{ usuario.estado }}</span>
+                        </div>
+                      </td>
+                    <td style="text-align: center;">
+                        <a class="btn btn-lg btn-primary" href="{{ path('app_usuario_show', {'id': usuario.idUsuario}) }}">Ver</a>
+                        <a class="btn btn-lg btn-primary" href="{{ path('app_usuario_edit', {'id': usuario.idUsuario}) }}">Editar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+   
+    <a class="btn btn-lg btn-primary"  href="{{ path('app_usuario_new') }}">Crear Nuevo</a>
+{% endblock %}
