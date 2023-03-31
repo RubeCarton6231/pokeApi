@@ -1,0 +1,5 @@
+.btn2:hover {
+    background-color: #c93939;
+    border-radius: 10px;
+    transition: 0.5s;
+  }

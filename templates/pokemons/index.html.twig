@@ -16,5 +16,15 @@
         <li>Your controller at <code><a href="{{ 'C:/Users/Desarrollo/Desktop/Proyectos Pruebas/Telconet/PokeApi/src/Controller/PokemonsController.php'|file_link(0) }}">src/Controller/PokemonsController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'C:/Users/Desarrollo/Desktop/Proyectos Pruebas/Telconet/PokeApi/templates/pokemons/index.html.twig'|file_link(0) }}">templates/pokemons/index.html.twig</a></code></li>
     </ul>
+
+    <script>
+        let pokemons = []
+        fetch('https://pokeapi.co/api/v2/pokemon')
+        .then( async (resp) => {            
+            pokemons = await resp.json();
+            console.log(pokemons)
+        });
+        
+    </script>
 </div>
 {% endblock %}
